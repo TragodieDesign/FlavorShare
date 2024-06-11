@@ -1,15 +1,17 @@
-// HomeScreen.js
 import React from 'react';
-import { View, Text, Button } from 'react-native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import FirstScreen from './Screens/FirstScreen';
+import SecondScreen from './Screens/SecondScreen';
 
-const HomeScreen = ({ navigation }) => {
+const Tab = createBottomTabNavigator();
+
+const HomeScreen = () => {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Home Screen</Text>
-      <Button title="Logout" onPress={() => navigation.navigate('Login')} />
-    </View>
+    <Tab.Navigator>
+      <Tab.Screen name="Início" component={FirstScreen} />
+      <Tab.Screen name="Busca" component={SecondScreen} />
+    </Tab.Navigator>
   );
 };
 
 export default HomeScreen;
-
