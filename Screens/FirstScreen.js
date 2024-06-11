@@ -1,34 +1,32 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
-
+import React, { useState, useEffect } from 'react';
+import { View, Text, Button } from 'react-native';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 const FirstScreen = () => {
+  const [user, setUser] = useState(null);
 
-    const [uid, setUid] = useState(null);
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
 
-    useEffect(() => {
-      // Função para obter o UID do AsyncStorage
-      const getUidFromStorage = async () => {
-        try {
-          const storedUid = await AsyncStorage.getItem('authUid');
-          setUid(storedUid); // Define o UID recuperado no estado
-        } catch (error) {
-          console.error('Erro ao obter o UID do AsyncStorage:', error);
-        }
-      };
-    
-      getUidFromStorage(); // Chama a função de obtenção do UID do AsyncStorage
-    }, []);
-    
-    // Exibe o UID na tela
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>{uid ? `UID do usuário: ` : 'Carregando UID...'}</Text>
-      </View>
-    );
-  
+    // Limpa o listener ao desmontar o componente
+    return () => unsubscribe();
+  }, []);
+
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      {user ? (
+        <View>
+          <Text>E-mail: {user.email}</Text>
+          <Button title="Sair" />
+        </View>
+      ) : (
+        <Text>Nenhum usuário autenticado</Text>
+      )}
+    </View>
+  );
 };
 
 export default FirstScreen;
