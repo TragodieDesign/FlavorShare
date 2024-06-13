@@ -9,8 +9,11 @@ import InitialScreen from './InitialScreen';
 import LoginScreen from './LoginScreen';
 import HomeScreen from './HomeScreen';
 import RegisterScreen from './RegisterScreen';
-import FirstScreen from './Screens/FirstScreen'; // Adicione outras telas conforme necessário
+import FirstScreen from './Screens/FirstScreen'; 
+import SingleRecipe from './Recipes/SingleRecipe';
 import HomeTabs from './HomeTabs';
+import CheckoutScreen from './CheckoutScreen'
+import { StripeProvider } from '@stripe/stripe-react-native';
 // Configurar Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyB2LbXcky6tycsr135oNlCZWIeN_YK3I6g",
@@ -35,16 +38,20 @@ const Tab = createBottomTabNavigator();
 
 const App = () => {
   return (
+    <StripeProvider publishableKey="pk_live_51PQiq7Lf9UR9gU51zvQ3lNcSzncjtpEKgsB1vQpmgl2cv7uiNElngkRSIO9bBrQ5WY4qNsKAvkqCl5KnRLJtlWRh008ETCN3kA">
     <NavigationContainer>
       <Stack.Navigator initialRouteName="InitialScreen">
         <Stack.Screen name="InitialScreen" component={InitialScreen} options={{ headerShown: false }} />
         <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="Register" component={RegisterScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="RegisterScreen" component={RegisterScreen}/>
+        <Stack.Screen name="Cadastro" component={RegisterScreen}  />
         <Stack.Screen name="HomeTabs" component={HomeTabs} options={{ headerShown: false }} />
         <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false }} />
-
+        <Stack.Screen name="SingleRecipe" component={SingleRecipe} options={{ headerShown: false }}/>
+        <Stack.Screen name="CheckoutScreen" component={CheckoutScreen} options={{ headerShown: false }}/>
       </Stack.Navigator>
     </NavigationContainer>
+    </StripeProvider>
   );
 };
 

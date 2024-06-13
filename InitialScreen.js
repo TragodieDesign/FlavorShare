@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, Button,Image } from 'react-native';
+import RegisterScreen from './RegisterScreen';
 
 
 const InitialScreen = ({ navigation }) => {
@@ -24,8 +25,8 @@ const InitialScreen = ({ navigation }) => {
     </View>
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', flexDirection: 'row', gap:20, }}>
 
-    <Button title="Login" onPress={() => navigation.navigate('Login')} />
-      <Button title="Cadastre-se" onPress={() => navigation.navigate('Register')} />
+    <Button color="#6b0812" title="Login" onPress={() => navigation.navigate('Login')} />
+      <Button color="#6b0812" title="Cadastre-se" onPress={() => navigation.navigate('RegisterScreen')}  />
     </View>
     </View>
   );

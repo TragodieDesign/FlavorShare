@@ -48,11 +48,11 @@ const LoginScreen = ({ navigation }) => {
         secureTextEntry
       />
       {error && <Text style={styles.errorText}>{error}</Text>}
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
+      <TouchableOpacity  style={styles.button} onPress={handleLogin}>
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
       <View>
-      <Button style={{marginTop: 60,}} title="Cadastre-se" onPress={() => navigation.navigate('Register')} />
+      <Button color="#6b0812" style={{marginTop: 60,}} title="Cadastre-se" onPress={() => navigation.navigate('Register')} />
     </View>
     </View>
 
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
   button: {
     width: '80%',
     height: 50,
-    backgroundColor: '#007bff',
+    backgroundColor: "#6b0812",
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 5,
